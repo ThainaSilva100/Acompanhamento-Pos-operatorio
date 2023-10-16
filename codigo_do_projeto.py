@@ -1,3 +1,22 @@
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+
+# Gerar um dataset fictício
+np.random.seed(42)  # para garantir a reprodutibilidade
+
+data_size = 500
+df = pd.DataFrame({
+    'AGE': np.random.randint(20, 80, data_size),
+    'GENDER': np.random.choice(['F', 'M'], data_size),
+    'POST_OPERATIVE_STATUS': np.random.choice(['Y', 'N'], data_size),
+    'DIAGNOSIS': np.random.choice(['D1', 'D2', 'D3', 'D4'], data_size),
+    'DIGNITY_SCORE': np.random.randint(1, 6, data_size),
+    'CONFIDENTIALITY_SCORE': np.random.randint(1, 6, data_size),
+    'ROUND_DURATION_MIN': np.random.randint(10, 120, data_size),
+    'SATISFACTION_SCORE': np.random.randint(1, 6, data_size)
+})
+
 # Carregando os dados
 # df = pd.read_csv('path_to_data.csv')
 
@@ -29,25 +48,6 @@ plt.figure(figsize=(12, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
 plt.title('Matriz de Correlação')
 plt.show()
-
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-
-# Gerar um dataset fictício
-np.random.seed(42)  # para garantir a reprodutibilidade
-
-data_size = 500
-df = pd.DataFrame({
-    'AGE': np.random.randint(20, 80, data_size),
-    'GENDER': np.random.choice(['F', 'M'], data_size),
-    'POST_OPERATIVE_STATUS': np.random.choice(['Y', 'N'], data_size),
-    'DIAGNOSIS': np.random.choice(['D1', 'D2', 'D3', 'D4'], data_size),
-    'DIGNITY_SCORE': np.random.randint(1, 6, data_size),
-    'CONFIDENTIALITY_SCORE': np.random.randint(1, 6, data_size),
-    'ROUND_DURATION_MIN': np.random.randint(10, 120, data_size),
-    'SATISFACTION_SCORE': np.random.randint(1, 6, data_size)
-})
 
 # Codificação One-Hot
 df_encoded = pd.get_dummies(df, columns=['GENDER', 'POST_OPERATIVE_STATUS', 'DIAGNOSIS'])
